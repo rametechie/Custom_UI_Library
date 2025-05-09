@@ -30,17 +30,15 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1" // Replace with the appropriate version
     }
-
-
 }
 
 dependencies {
     implementation(project(":ui_library"))
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("androidx.compose.ui:ui:1.4.3")
-    implementation("androidx.compose.material:material:1.4.3")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.4.3")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.4.3")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.4.3")
+    implementation(libs.androidx.core.ktx.v1101)
+    implementation(libs.androidx.activity.compose.v172)
+    implementation(libs.ui)
+    implementation(libs.androidx.material)
+    implementation(libs.ui.tooling.preview)
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
 }
