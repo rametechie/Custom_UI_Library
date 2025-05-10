@@ -34,7 +34,7 @@ fun CustomInputField(
                 IconButton(onClick = { visible = !visible }) {
                     Icon(
                         imageVector = if (visible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-                        contentDescription = null,
+                        contentDescription = "Toggle Password Visibility",
                         tint = Color.Gray
                     )
                 }
