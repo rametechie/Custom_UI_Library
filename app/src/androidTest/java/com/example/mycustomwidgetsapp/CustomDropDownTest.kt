@@ -1,9 +1,10 @@
-package com.example.ui_library
+package com.example.mycustomwidgetsapp
 
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import com.example.ui_library.CustomDropDown
 import org.junit.Rule
 import org.junit.Test
 

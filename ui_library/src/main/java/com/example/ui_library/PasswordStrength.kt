@@ -9,7 +9,7 @@ fun passwordStrength(password: String): PasswordStrength {
         password.length < 8 -> PasswordStrength.VERY_WEAK
         password.length in 8..12 && (password.all { it.isLetter() } || password.all { it.isDigit() }) ->
             PasswordStrength.WEAK
-        password.length > 12 && password.any { it.isLetter() } &&
+        password.length >= 12 && password.any { it.isLetter() } &&
             password.any { it.isDigit() } &&
             password.any { !it.isLetterOrDigit() } -> PasswordStrength.STRONG
         else -> PasswordStrength.WEAK

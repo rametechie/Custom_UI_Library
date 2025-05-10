@@ -12,7 +12,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-
+//hint is not visible
 @Composable
 fun CustomInputField(
     label: String,
@@ -32,13 +32,13 @@ fun CustomInputField(
             onValueChange = onValueChange,
             label = { Text(text = hint) },
             visualTransformation = if (!visible && passwordVisibility) PasswordVisualTransformation() else VisualTransformation.None,
-            trailingIcon = {
+            /*trailingIcon = {
                 if (passwordVisibility) {
                     IconButton(onClick = { visible = !visible }) {
                         //Icon(Icons.Default.Visibility, contentDescription = null)
                     }
                 }
-            }
+            }*/
         )
         if (passwordVisibility) {
             Text("Strength: ${strength.name}", color = when (strength) {
