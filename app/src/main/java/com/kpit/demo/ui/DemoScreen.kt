@@ -1,7 +1,7 @@
 package com.kpit.demo.ui
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -13,11 +13,13 @@ fun DemoScreen() {
     var selected by remember { mutableStateOf("Option 1") }
 
     Column(modifier = Modifier.padding(16.dp)) {
+        Text(text = "UI Components", style = MaterialTheme.typography.headlineMedium)
+        Spacer(modifier = Modifier.height(16.dp))
         CustomButton(
             text = "Click Me",
             onClick = { /* Handle click */ },
-            backgroundColor = MaterialTheme.colors.primary,
-            textColor = MaterialTheme.colors.onPrimary
+            backgroundColor = MaterialTheme.colorScheme.primary,
+            textColor = MaterialTheme.colorScheme.onPrimary
         )
         Spacer(modifier = Modifier.height(16.dp))
         CustomDropDown(

@@ -20,11 +20,11 @@ fun CustomButton(
 
     Button(
         onClick = {
-            isClicked = true
+            isClicked = !isClicked
             onClick()
         },
         colors = ButtonDefaults.buttonColors(
-            containerColor = if (isClicked) backgroundColor.copy(alpha = 0.7f) else backgroundColor
+            containerColor = if (isClicked) backgroundColor.copy(alpha = 0.5f) else backgroundColor.copy(alpha = 0.9f)
         ),
         shape = RoundedCornerShape(12.dp),
         interactionSource = remember { MutableInteractionSource() }

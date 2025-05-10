@@ -38,7 +38,8 @@ fun CustomDropDown(
 
         DropdownMenu(
             expanded = expanded,
-            onDismissRequest = { expanded = false }
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.background(Color.White, shape = RoundedCornerShape(12.dp))
         ) {
             options.forEach { option ->
                 DropdownMenuItem(
@@ -47,9 +48,11 @@ fun CustomDropDown(
                         onOptionSelected(option)
                         expanded = false
                     },
-                    modifier = Modifier.background(
-                        if (option == selectedOption) Color.Gray else Color.Transparent
-                    )
+                    modifier = Modifier
+                        .background(
+                            if (option == selectedOption) Color(0xFFE0E0E0) else Color.Transparent,
+                            shape = RoundedCornerShape(8.dp)
+                        )
                 )
             }
         }
