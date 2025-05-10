@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mycustomwidgetsapp">
+    package="com.kpit.demo">
 
     <application
         android:label="MyCustomWidgetsApp"

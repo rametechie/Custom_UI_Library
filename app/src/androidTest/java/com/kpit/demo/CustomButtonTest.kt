@@ -1,4 +1,4 @@
-package com.example.mycustomwidgetsapp
+package com.kpit.demo
 
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule

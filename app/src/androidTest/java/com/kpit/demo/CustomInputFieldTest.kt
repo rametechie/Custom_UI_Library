@@ -1,10 +1,10 @@
-package com.example.mycustomwidgetsapp
+package com.kpit.demo
 
 import androidx.compose.runtime.*
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import com.example.ui_library.CustomInputField
-import com.example.ui_library.passwordStrength
+import com.kpit.ui_library.CustomInputField
+import com.kpit.ui_library.passwordStrength
 import org.junit.Rule
 import org.junit.Test
 

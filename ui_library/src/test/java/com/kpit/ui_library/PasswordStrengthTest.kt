@@ -1,4 +1,4 @@
-package com.example.ui_library
+package com.kpit.ui_library
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

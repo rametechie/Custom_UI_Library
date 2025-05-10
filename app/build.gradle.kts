@@ -1,15 +1,15 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose") // Add this line
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
-    namespace = "com.example.mycustomwidgetsapp"
+    namespace = "com.kpit.demo"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.mycustomwidgetsapp"
+        applicationId = "com.kpit.demo"
         minSdk = 30
         versionCode = 1
         versionName = "1.0"
@@ -29,7 +29,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1" // Replace with the appropriate version
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
 }
 

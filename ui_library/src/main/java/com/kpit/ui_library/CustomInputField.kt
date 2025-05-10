@@ -1,4 +1,4 @@
-package com.example.ui_library
+package com.kpit.ui_library
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.IconButton

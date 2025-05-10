@@ -1,9 +1,9 @@
-package com.example.mycustomwidgetsapp
+package com.kpit.demo
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.mycustomwidgetsapp.ui.DemoScreen
+import com.kpit.demo.ui.DemoScreen
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

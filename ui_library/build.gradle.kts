@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ui_library"
+    namespace = "com.kpit.ui_library"
     compileSdk = 35
 
     defaultConfig {
@@ -25,7 +25,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1" // Replace with the appropriate version
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
 }
 

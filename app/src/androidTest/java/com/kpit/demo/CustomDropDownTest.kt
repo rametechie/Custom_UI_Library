@@ -1,17 +1,21 @@
-package com.example.mycustomwidgetsapp
+package com.kpit.demo
 
 
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.example.ui_library.CustomDropDown
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.kpit.ui_library.CustomDropDown
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
 class CustomDropDownTest {
 
     @get:Rule
-    val composeTestRule = createComposeRule()
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
     fun dropdownUpdatesSelectedOption() {

@@ -1,4 +1,4 @@
-package com.example.ui_library
+package com.kpit.ui_library
 
 enum class PasswordStrength {
     VERY_WEAK, WEAK, STRONG

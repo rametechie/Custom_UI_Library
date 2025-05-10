@@ -1,11 +1,11 @@
-package com.example.mycustomwidgetsapp.ui
+package com.kpit.demo.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.ui_library.*
+import com.kpit.ui_library.*
 
 @Composable
 fun DemoScreen() {
