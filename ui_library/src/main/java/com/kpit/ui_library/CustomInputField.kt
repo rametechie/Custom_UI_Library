@@ -43,7 +43,7 @@ fun CustomInputField(
         if (passwordVisibility) {
             Text("Strength: ${strength.name}", color = when (strength) {
                 PasswordStrength.VERY_WEAK -> Color.Red
-                PasswordStrength.WEAK -> Color.Yellow
+                PasswordStrength.WEAK -> Color.Gray
                 PasswordStrength.STRONG -> Color.Green
             })
         }
