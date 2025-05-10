@@ -1,11 +1,14 @@
 package com.kpit.ui_library
 
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-// click effect
+import androidx.compose.ui.unit.dp
+
 @Composable
 fun CustomButton(
     text: String,
@@ -13,12 +16,19 @@ fun CustomButton(
     backgroundColor: Color,
     textColor: Color
 ) {
+    var isClicked by remember { mutableStateOf(false) }
+
     Button(
-        onClick = onClick,
-        colors = ButtonDefaults.buttonColors(backgroundColor)
-    )
-    {
+        onClick = {
+            isClicked = true
+            onClick()
+        },
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if (isClicked) backgroundColor.copy(alpha = 0.7f) else backgroundColor
+        ),
+        shape = RoundedCornerShape(12.dp),
+        interactionSource = remember { MutableInteractionSource() }
+    ) {
         Text(text = text, color = textColor)
     }
 }
-

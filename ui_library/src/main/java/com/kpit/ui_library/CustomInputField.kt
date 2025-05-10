@@ -1,18 +1,14 @@
 package com.kpit.ui_library
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
-//hint is not visible
+import androidx.compose.ui.text.input.*
+
 @Composable
 fun CustomInputField(
     label: String,
@@ -23,6 +19,7 @@ fun CustomInputField(
     passwordStrength: (String) -> PasswordStrength
 ) {
     var visible by remember { mutableStateOf(passwordVisibility) }
+    val visualTransformation = if (visible) VisualTransformation.None else PasswordVisualTransformation()
     val strength = passwordStrength(value)
 
     Column {
@@ -30,15 +27,18 @@ fun CustomInputField(
         OutlinedTextField(
             value = value,
             onValueChange = onValueChange,
-            label = { Text(text = hint) },
-            visualTransformation = if (!visible && passwordVisibility) PasswordVisualTransformation() else VisualTransformation.None,
-            /*trailingIcon = {
-                if (passwordVisibility) {
-                    IconButton(onClick = { visible = !visible }) {
-                        //Icon(Icons.Default.Visibility, contentDescription = null)
-                    }
+            placeholder = { Text(hint) },
+            visualTransformation = visualTransformation,
+            singleLine = true,
+            trailingIcon = {
+                IconButton(onClick = { visible = !visible }) {
+                    Icon(
+                        imageVector = if (visible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                        contentDescription = null,
+                        tint = Color.Gray
+                    )
                 }
-            }*/
+            }
         )
         if (passwordVisibility) {
             Text("Strength: ${strength.name}", color = when (strength) {
