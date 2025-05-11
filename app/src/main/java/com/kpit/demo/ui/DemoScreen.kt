@@ -1,10 +1,12 @@
 package com.kpit.demo.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
@@ -16,7 +18,7 @@ import com.kpit.ui_library.*
 fun DemoScreen(viewModel: DemoViewModel = viewModel()) {
     val text by viewModel.text.collectAsState()
     val selected by viewModel.selected.collectAsState()
-
+    val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -50,7 +52,7 @@ fun DemoScreen(viewModel: DemoViewModel = viewModel()) {
         CustomButton(
             text = "Click Me",
             onClick = {
-                // example action
+                Toast.makeText(context, "Button clicked!", Toast.LENGTH_SHORT).show()
             },
             backgroundColor = MaterialTheme.colorScheme.primary,
             textColor = MaterialTheme.colorScheme.onPrimary
