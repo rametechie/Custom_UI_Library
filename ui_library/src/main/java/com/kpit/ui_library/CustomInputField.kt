@@ -5,8 +5,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
+import androidx.compose.ui.Modifier
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.*
 
 @Composable
@@ -30,6 +32,7 @@ fun CustomInputField(
             placeholder = { Text(hint) },
             visualTransformation = visualTransformation,
             singleLine = true,
+            modifier = Modifier.testTag("passwordInput"),
             trailingIcon = {
                 IconButton(onClick = { visible = !visible }) {
                     Icon(

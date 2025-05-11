@@ -37,6 +37,7 @@ dependencies {
     implementation(project(":ui_library"))
     implementation(libs.androidx.core.ktx.v1101)
     implementation(libs.androidx.activity.compose.v172)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation(libs.ui)
     implementation(libs.androidx.material)
     implementation(libs.ui.tooling.preview)

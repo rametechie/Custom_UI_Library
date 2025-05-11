@@ -8,12 +8,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kpit.demo.viewmodel.DemoViewModel
 import com.kpit.ui_library.*
 
 @Composable
-fun DemoScreen() {
-    var text by remember { mutableStateOf("") }
-    var selected by remember { mutableStateOf("") }
+fun DemoScreen(viewModel: DemoViewModel = viewModel()) {
+    val text by viewModel.text.collectAsState()
+    val selected by viewModel.selected.collectAsState()
 
     Column(
         modifier = Modifier
@@ -30,26 +32,28 @@ fun DemoScreen() {
             )
         )
 
-        CustomButton(
-            text = "Click Me",
-            onClick = { /* Handle click */ },
-            backgroundColor = MaterialTheme.colorScheme.primary,
-            textColor = MaterialTheme.colorScheme.onPrimary
+        CustomInputField(
+            label = "Password",
+            hint = "Enter password",
+            value = text,
+            onValueChange = { viewModel.onTextChanged(it) },
+            passwordVisibility = true,
+            passwordStrength = ::passwordStrength
         )
 
         CustomDropDown(
             options = listOf("Option 1", "Option 2", "Option 3"),
             selectedOption = selected,
-            onOptionSelected = { selected = it }
+            onOptionSelected = { viewModel.onSelectionChanged(it) }
         )
 
-        CustomInputField(
-            label = "Password",
-            hint = "Enter password",
-            value = text,
-            onValueChange = { text = it },
-            passwordVisibility = true,
-            passwordStrength = ::passwordStrength
+        CustomButton(
+            text = "Click Me",
+            onClick = {
+                // example action
+            },
+            backgroundColor = MaterialTheme.colorScheme.primary,
+            textColor = MaterialTheme.colorScheme.onPrimary
         )
     }
 }

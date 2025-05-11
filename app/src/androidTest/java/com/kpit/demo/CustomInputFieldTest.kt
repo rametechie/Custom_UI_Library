@@ -31,6 +31,8 @@ class CustomInputFieldUITest {
         composeTestRule.onAllNodes(hasText(strengthPrefix, substring = true))
             .onFirst()
             .assertExists()
+        composeTestRule.onNodeWithTag("passwordInput").performTextInput("Abc123!@#456")
+        composeTestRule.onNodeWithText("Strength: STRONG").assertExists()
     }
 
     @Test

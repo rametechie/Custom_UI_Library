@@ -21,8 +21,20 @@ class CustomWidgetsUiTest {
 
     @Test
     fun customDropDown_selectOption_updatesSelectedText() {
+        composeRule.onNodeWithText("Select an option").performClick()
         composeRule.onNodeWithText("Option 1").performClick()
+        composeRule.onNodeWithText("Option 1").assertExists()
+    }
+
+    @Test
+    fun dropdown_SelectsNewOption() {
+        // Initial state
+        composeRule.onNodeWithText("Select an option").assertExists().performClick()
+
+        // Select an item from the dropdown
         composeRule.onNodeWithText("Option 2").performClick()
+
+        // Verify the selection updated
         composeRule.onNodeWithText("Option 2").assertExists()
     }
 
