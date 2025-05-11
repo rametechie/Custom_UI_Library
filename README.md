@@ -18,5 +18,7 @@ source ~/.zshrc
 Ensure the test results file is generated:
 ls app/build/jacoco/testDebugUnitTest.exec
 You can force them to run:
-
 ./gradlew clean testDebugUnitTest --info
+
+# Publish aar file for ui_library
+./gradlew :ui_library:publishReleasePublicationToGitHubPackagesRepository
