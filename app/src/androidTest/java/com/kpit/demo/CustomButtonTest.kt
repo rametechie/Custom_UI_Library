@@ -16,6 +16,11 @@ class CustomButtonUITest {
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
+    fun customButton_clickTriggersAction() {
+        composeTestRule.onNodeWithText("Click Me").assertExists().performClick()
+    }
+
+    @Test
     fun buttonIsDisplayed() {
         composeTestRule.onNodeWithText("Click Me").assertExists().performClick()
     }
