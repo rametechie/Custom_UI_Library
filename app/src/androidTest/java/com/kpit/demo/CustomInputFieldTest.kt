@@ -6,12 +6,46 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import androidx.compose.ui.test.performTextClearance
 
 @RunWith(AndroidJUnit4::class)
 class CustomInputFieldUITest {
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
+
+    @Test
+    fun inputField_displaysCorrectLabelAndHint() {
+        // Check label
+        composeTestRule.onNodeWithText("Password")
+            .assertExists()
+            .assertIsDisplayed()
+
+        // Check hint (inside the placeholder)
+        composeTestRule.onNodeWithText("Enter password")
+            .assertExists()
+            .assertIsDisplayed()
+    }
+
+    @Test
+    fun passwordStrength_calculatesCorrectly() {
+        val field = composeTestRule.onNodeWithTag("passwordInput")
+
+        field.performTextClearance()
+        field.performTextInput("123")
+        composeTestRule.waitForIdle()
+        composeTestRule.onNodeWithText("Strength: VERY_WEAK").assertExists()
+
+        field.performTextClearance()
+        field.performTextInput("abcdefgh")
+        composeTestRule.waitForIdle()
+        composeTestRule.onNodeWithText("Strength: WEAK").assertExists()
+
+        field.performTextClearance()
+        field.performTextInput("Abc123!@#456")
+        composeTestRule.waitForIdle()
+        composeTestRule.onNodeWithText("Strength: STRONG").assertExists()
+    }
 
     @Test
     fun inputFieldUpdatesValueAndShowsStrength() {
@@ -24,17 +58,9 @@ class CustomInputFieldUITest {
 
         // Confirm password appears in the field
         composeTestRule.onNodeWithText(passwordText).assertExists()
-
-        // Check that a strength label appears (weaker, more robust)
-
-        val strengthPrefix = "Strength: "
-        composeTestRule.onAllNodes(hasText(strengthPrefix, substring = true))
-            .onFirst()
-            .assertExists()
-        composeTestRule.onNodeWithTag("passwordInput").performTextInput("Abc123!@#456")
-        composeTestRule.onNodeWithText("Strength: STRONG").assertExists()
     }
 
+    //extra test
     @Test
     fun togglePasswordVisibilityIconWorks() {
         // Toggle visibility icon (eye icon)

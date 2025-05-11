@@ -14,7 +14,18 @@ class CustomDropDownUITest {
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
-    fun dropdown_SelectsNewOption() {
+    fun dropdown_displaysAllOptions_whenExpanded() {
+        // Click to expand dropdown
+        composeTestRule.onNodeWithText("Select an option").performClick()
+
+        // Verify all options are shown
+        listOf("Option 1", "Option 2", "Option 3").forEach { option ->
+            composeTestRule.onNodeWithText(option).assertExists()
+        }
+    }
+
+    @Test
+    fun dropdown_selectsNewOption() {
         // Initial state
         composeTestRule.onNodeWithText("Select an option").assertExists().performClick()
 
