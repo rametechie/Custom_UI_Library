@@ -45,7 +45,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.kpit"
                 artifactId = "ui_library"
-                version = "1.0.0"
+                version = "1.0.1"
             }
         }
 
