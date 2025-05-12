@@ -15,6 +15,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
 
+/**
+ * A custom dropdown menu component built with Jetpack Compose.
+ *
+ * Displays a clickable container that shows a list of options in a dropdown format.
+ * When an option is selected, the menu closes and the selection is updated via callback.
+ *
+ * @param options A list of string values to display in the dropdown menu.
+ * @param selectedOption The currently selected option, which is shown as the default text.
+ * @param onOptionSelected A lambda callback invoked when the user selects an option.
+ *                         Receives the selected option as a parameter.
+ *
+ * The dropdown includes:
+ * - A toggleable container that expands/collapses the menu.
+ * - A default placeholder ("Select an option") when no selection is made.
+ * - Visual indication of the selected item.
+ * - Rounded corners and light background styling.
+ */
 @Composable
 fun CustomDropDown(
     options: List<String>,
