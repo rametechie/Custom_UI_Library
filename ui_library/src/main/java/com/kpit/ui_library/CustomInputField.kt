@@ -43,7 +43,13 @@ fun CustomInputField(
     var visible by remember { mutableStateOf(passwordVisibility) }
     var isInteracted by remember { mutableStateOf(false) }
     val visualTransformation = if (visible) VisualTransformation.None else PasswordVisualTransformation()
-//    val strength = passwordStrength(value)
+//    Why This Works
+//
+//    remember(value) tracks changes to value.
+//
+//    derivedStateOf { ... } ensures recomputation only when necessary.
+//
+//    by automatically extracts the value from the state.
     val strength by remember(value) {
         derivedStateOf { passwordStrength(value) }
     }
