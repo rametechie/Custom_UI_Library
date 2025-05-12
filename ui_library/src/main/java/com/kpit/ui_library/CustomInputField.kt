@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.*
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.*
@@ -40,18 +41,29 @@ fun CustomInputField(
     passwordStrength: (String) -> PasswordStrength
 ) {
     var visible by remember { mutableStateOf(passwordVisibility) }
+    var isInteracted by remember { mutableStateOf(false) }
     val visualTransformation = if (visible) VisualTransformation.None else PasswordVisualTransformation()
-    val strength = passwordStrength(value)
-
+//    val strength = passwordStrength(value)
+    val strength by remember(value) {
+        derivedStateOf { passwordStrength(value) }
+    }
     Column {
         Text(text = label)
         OutlinedTextField(
             value = value,
-            onValueChange = onValueChange,
+            onValueChange = {
+                onValueChange(it)
+                isInteracted = true
+            },
             placeholder = { Text(hint) },
             visualTransformation = visualTransformation,
             singleLine = true,
-            modifier = Modifier.testTag("passwordInput"),
+            modifier = Modifier.testTag("passwordInput")
+                .onFocusChanged { focusState ->
+                    if (focusState.isFocused) {
+                        isInteracted = true
+                    }
+                },
             trailingIcon = {
                 IconButton(onClick = { visible = !visible }) {
                     Icon(
@@ -62,12 +74,15 @@ fun CustomInputField(
                 }
             }
         )
-        if (passwordVisibility) {
-            Text("Strength: ${strength.name}", color = when (strength) {
-                PasswordStrength.VERY_WEAK -> Color.Red
-                PasswordStrength.WEAK -> Color.Gray
-                PasswordStrength.STRONG -> Color.Green
-            })
+        if (passwordVisibility && isInteracted && value.isNotBlank()) {
+            Text(
+                text = "Strength: ${strength.name}",
+                color = when (strength) {
+                    PasswordStrength.VERY_WEAK -> Color.Red
+                    PasswordStrength.WEAK -> Color.Gray
+                    PasswordStrength.STRONG -> Color.Green
+                }
+            )
         }
     }
 }
