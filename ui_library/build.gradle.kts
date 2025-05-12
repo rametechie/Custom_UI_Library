@@ -36,6 +36,10 @@ android {
             withJavadocJar()
         }
     }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 afterEvaluate {
@@ -78,22 +82,31 @@ dependencies {
     androidTestImplementation(project(":app"))
 }
 
+
 tasks.register<JacocoReport>("jacocoTestReport") {
     dependsOn("testDebugUnitTest")
 
     reports {
-        xml.required.set(true)
         html.required.set(true)
+        xml.required.set(true)
     }
 
-    val fileFilter = listOf("**/R.class", "**/R$*.class", "**/BuildConfig.*", "**/Manifest*.*")
-    val debugTree = fileTree("\${buildDir}/tmp/kotlin-classes/debug") {
-        exclude(fileFilter)
-    }
+    val fileFilter = listOf(
+        "**/R.class",
+        "**/R$*.class",
+        "**/BuildConfig.*",
+        "**/Manifest*.*",
+        "**/*Test*.*"
+    )
 
-    val mainSrc = "\${project.projectDir}/src/main/java"
+    val kotlinDebugTree = fileTree(
+        mapOf("dir" to "$buildDir/tmp/kotlin-classes/debug", "excludes" to fileFilter)
+    )
+    val javaDebugTree = fileTree(
+        mapOf("dir" to "$buildDir/intermediates/javac/debug/classes", "excludes" to fileFilter)
+    )
 
-    classDirectories.setFrom(files(debugTree))
-    sourceDirectories.setFrom(files(mainSrc))
+    classDirectories.setFrom(files(listOf(kotlinDebugTree, javaDebugTree)))
+    sourceDirectories.setFrom(files("src/main/java", "src/main/kotlin"))
     executionData.setFrom(fileTree(buildDir).include("jacoco/testDebugUnitTest.exec"))
 }
