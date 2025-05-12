@@ -1,3 +1,4 @@
+
 package com.kpit.ui_library
 
 import androidx.compose.foundation.background
@@ -16,27 +17,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
 
 /**
- * A custom dropdown menu component built with Jetpack Compose.
+ * A generic custom dropdown menu component built with Jetpack Compose.
  *
  * Displays a clickable container that shows a list of options in a dropdown format.
  * When an option is selected, the menu closes and the selection is updated via callback.
  *
- * @param options A list of string values to display in the dropdown menu.
- * @param selectedOption The currently selected option, which is shown as the default text.
- * @param onOptionSelected A lambda callback invoked when the user selects an option.
- *                         Receives the selected option as a parameter.
- *
- * The dropdown includes:
- * - A toggleable container that expands/collapses the menu.
- * - A default placeholder ("Select an option") when no selection is made.
- * - Visual indication of the selected item.
- * - Rounded corners and light background styling.
+ * @param options A list of items of any type to display in the dropdown menu.
+ * @param selectedOption The currently selected item, which is shown as the default text.
+ * @param onOptionSelected A lambda callback invoked when the user selects an item.
  */
 @Composable
-fun CustomDropDown(
-    options: List<String>,
-    selectedOption: String,
-    onOptionSelected: (String) -> Unit
+fun <T> CustomDropDown(
+    options: List<T>,
+    selectedOption: T?,
+    onOptionSelected: (T) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -56,7 +50,7 @@ fun CustomDropDown(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = selectedOption.ifEmpty { "Select an option" })
+            Text(text = selectedOption?.toString() ?: "Select an option")
             Icon(
                 imageVector = if (expanded) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown,
                 contentDescription = null
@@ -71,7 +65,7 @@ fun CustomDropDown(
         ) {
             options.forEach { option ->
                 DropdownMenuItem(
-                    text = { Text(option) },
+                    text = { Text(option.toString()) },
                     onClick = {
                         onOptionSelected(option)
                         expanded = false
