@@ -1,5 +1,6 @@
 # Compose_custom_ui
 Create a UI library with custom widgets for a mobile application using Jetpack Compose. Used material design and its assets for this assignment. Library available in https://github.com/rametechie/Custom_UI_Library/packages/2501100.
+Usage in Android App : Import the dependency using implementation("com.kpit:ui_library:1.0.2").
 
 # Running Android UI test 
 ./gradlew connectedAndroidTest
